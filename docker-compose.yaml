@@ -1,0 +1,16 @@
+
+services:
+  db:
+    image: postgres:latest
+    environment:
+      POSTGRES_PASSWORD : Pak1990???
+      POSTGRES_USER: spak
+      POSTGRES_DB: housing
+  app:
+    image: my-node-app:latest
+    environment:
+      POSTGRES_PASSWORD : Pak1990???
+      POSTGRES_USER: spak
+      POSTGRES_DB: housing
+    ports:
+       - 5432:5432

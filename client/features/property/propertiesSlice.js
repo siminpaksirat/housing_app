@@ -4,7 +4,7 @@ import axios from 'axios';
 // Thunk to fetch properties from the backend
 export const fetchAllProperties = createAsyncThunk('properties/fetchAll', async () => {
   try {
-    const { data } = await axios.get(BASE_URL + '/api/properties');
+    const { data } = await axios.get('http://localhost:3000/api/properties');
     return data;
   } catch (err) {
     console.error('Failed to fetch properties:', err);

@@ -1,18 +1,13 @@
 
+import './Home.css'
+
 const Home = () => {
 
     return (
         <>
 
-        <div className="home">
+        <div className="home-wraper">
             <h1> This is my website</h1>
-
-            <div>
-                <p>fwkjrhgjkbaerjlgnajlerngljawrg</p>
-            </div>
-
-
-
 
         </div>
 

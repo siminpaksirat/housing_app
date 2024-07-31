@@ -1,0 +1,23 @@
+
+
+
+.properties-wrapper{
+    display: inline-grid;
+    grid-column: 1/-1;
+    grid-template-columns: 5% 30% 30% 30% 5%;
+    grid-template-rows: auto;
+    height: 100%;
+    width: 100%;
+    padding: 120px;
+    gap: 1em;
+
+}
+
+.buttons{
+    display: inline-flex;
+    flex-direction: row;
+    align-items: center;
+    height: 10em;
+    width: 20em;
+    padding: 10em;
+}

@@ -1,20 +1,24 @@
 import { Route, Routes } from 'react-router-dom';
 
+
+
 import Home from './pages/Home.jsx';
-import Properties from './pages/Properties.jsx';
 import AllProperties from './pages/AllProperties.jsx';
+import About from './pages/About.jsx';
 
-
+import NavBar from './components/Navbar.jsx';
 
 const AppRoutes = () => {
     return (
         <>
-        <div>
+<NavBar/>
+
         <Routes>
         <Route path='/' element={<Home/>} />
         <Route path='/properties' element={<AllProperties/>} />
+        <Route path='/about' element={<About/>} />
         </Routes>
-        </div>
+
         </>
     )
 

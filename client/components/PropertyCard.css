@@ -1,4 +1,7 @@
-.property{
-    background-color: rgb(162, 162, 208);
-    width: 10rem;
+
+.property-card{
+    background-color: aqua;
+    color: blue;
+    height: 10em;
+    width: 10em;
 }

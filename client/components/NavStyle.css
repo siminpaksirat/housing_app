@@ -1,0 +1,13 @@
+
+
+.nav-wrapper{
+    width: 100%;
+    height: 200px;
+    background: transparent;
+    display: inline-flex;
+    justify-content: space-between;
+    grid-column: 1/ span 3;
+    z-index: 9;
+    position: fixed;
+    padding: 60px;
+}

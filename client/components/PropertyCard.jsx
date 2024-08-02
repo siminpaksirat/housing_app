@@ -12,7 +12,7 @@ import { fetchAllProperties, selectAllProperties, addProperty, deleteProperty } 
 
 
 
-const PropertyCard = () => {
+const PropertyCard = ({ property }) => {
 
 
   const dispatch = useDispatch();
@@ -25,12 +25,18 @@ const PropertyCard = () => {
 
   return (
     <>
+    <div className='property-card' key={property.id} property={property}>
+    {property.name}
+    {property.address}
 
-          {properties && properties.map((property) => (
+    </div>
+
+
+          {/* {properties && properties.map((property) => (
             <div className='property-card' key={property.id}>
                {property.name} - {property.address}
             </div>
-          ))}
+          ))} */}
 
 
     </>

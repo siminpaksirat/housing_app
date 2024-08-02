@@ -17,11 +17,11 @@ export const fetchAllProperties = createAsyncThunk('properties/fetchAll', async 
 });
 
 
-export const addProperty = createAsyncThunk('properties/addProperty', async ({name, address}) => {
+export const addProperty = createAsyncThunk('properties/addProperty', async ({ name, address}) => {
   try {
-     await axios.post('http://localhost:3000/api/properties', {name, address});
-    const { data } = await axios.get('http://localhost:3000/api/properties');
-     console.log('the add thunk activated', name, address);
+    const {data }=  await axios.post('http://localhost:3000/api/properties', {name, address});
+    // const { data } = await axios.get('http://localhost:3000/api/properties');
+    //  console.log('the add thunk activated', name, address);
     return data;
   } catch (err) {
     console.error('Failed to fetch properties:', err);

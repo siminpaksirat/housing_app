@@ -5,7 +5,7 @@ const router = Router();
 
 
 
-
+/////////////// FETCH ALL //////////////
 router.get('/properties', async (req, res, next) => {
   try {
     const properties = await Property.findAll({
@@ -17,6 +17,8 @@ router.get('/properties', async (req, res, next) => {
   }
 });
 
+
+/////////////// FETCH SINGLE //////////////
 router.get('/properties/:propertyId', async (req, res, next) => {
   const propertyId = req.params.propertyId;
   try {
@@ -34,7 +36,8 @@ router.get('/properties/:propertyId', async (req, res, next) => {
 });
 
 
-router.post('/properties/newProperty', async (req, res, next) => {
+/////////////// POST //////////////
+router.post('/properties', async (req, res, next) => {
   try {
     const newProperty = await Property.create({
       name: req.body.name,
@@ -47,6 +50,7 @@ router.post('/properties/newProperty', async (req, res, next) => {
 });
 
 
+/////////////// PUT //////////////
 router.put('/properties/:propertyId', async (req, res, next) => {
   const propertyId = req.params.propertyId;
   try {
@@ -68,6 +72,7 @@ router.put('/properties/:propertyId', async (req, res, next) => {
 });
 
 
+/////////////// DELETE //////////////
 router.delete('/properties/:propertyId', async (req, res, next) => {
   const propertyId = req.params.propertyId;
   try {

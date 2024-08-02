@@ -1,6 +1,7 @@
 import cors from 'cors';
 import dotenv from 'dotenv';
 import express from 'express';
+import bodyParser from 'body-parser';
 import path, { dirname } from 'path';
 import { fileURLToPath } from 'url';
 dotenv.config();
@@ -18,6 +19,7 @@ const PORT = process.env.PORT || 3000;
 const app = express()
 app.use(express.json())
 app.use(cors());
+app.use(bodyParser.json());
 
 
 // Routes /////////////////////////////////////////////////////////////
@@ -36,19 +38,19 @@ app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'index.html'));
 });
 
-app.use('/', (req, res) => {
+app.use('*', (req, res) => {
     console.log('THIS IS app use, ', __dirname);
     res.sendFile(path.join(__dirname, 'index.html'));
 });
 
 // Static file-serving middleware
-app.use(express.static(path.join(__dirname)));
+app.use(express.static(path.join(__dirname, 'index.html')));
 
 
 
 
 // Error Handling Middleware
-app.use((err, req, res) => {
+app.use((err, req, res, next) => {
     res.status(err.status || 500);
     res.json({
       message: err.message,

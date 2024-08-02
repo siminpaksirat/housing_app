@@ -10,37 +10,18 @@ function AllProperties() {
   const properties = useSelector(selectAllProperties);
   // console.log('this is properties', properties)
 
-
-  const [isModalOpen, setIsModalOpen] = useState(false);
-
-  const openModal = () => {
-    setIsModalOpen(true);
-  };
-
-  const closeModal = () => {
-    setIsModalOpen(false);
-  };
-
   const[currentPropertty, setCurrentProperty] = useState({})
   const[name, setName]= useState('')
   const[address, setAddress]=useState('')
-
-  useEffect(() => {
-      dispatch(fetchAllProperties());
-
-  }, [dispatch]);
-
-
-  const handleAdd = async ()=> {
-    await dispatch(addProperty({name, address}))
-    setName(''); // Clear the input fields after adding
-    setAddress('');
-    closeModal();
-
-  }
-
-
-
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  ////////////////////////
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
+  ////////////////////////
 
   const Modal = ({ closeModal }) => {
     return (
@@ -67,6 +48,31 @@ function AllProperties() {
       </div>
     );
   };
+  const handleAdd = async ()=> {
+    await dispatch(addProperty({name, address}))
+    setName(''); // Clear the input fields after adding
+    setAddress('');
+    closeModal();
+
+  }
+
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        dispatch(fetchAllProperties());
+      } catch (error) {
+        console.error(error);
+      }
+    }
+    fetchData();
+  }, [dispatch]);
+
+
+
+
+
+
+
 
   return (
     <>
@@ -90,8 +96,12 @@ function AllProperties() {
       <div className='properties-wrapper'>
       <h1>Properties</h1>
 
+<div>
+{properties && properties.map((property) => (
+          <PropertyCard key={property.id} property={property} />
+        ))}
 
-      <PropertyCard/>
+</div>
       </div>
 
       </>

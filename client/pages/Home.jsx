@@ -10,8 +10,9 @@ import TikToggle from '../components/toggles/TikToggle.jsx';
 import LetterAvatar from '../components/LetterAvatar.jsx';
 import SettingIcon from '../components/icons/SettingIcon.jsx';
 import ListToggle from '../components/toggles/ListToggle.jsx';
-import Alerts from '../components/Alerts.jsx';
+import Alerts from '../components/alerts/Alerts.jsx';
 import StateSelection from '../components/StateSelection.jsx';
+import AccordionTxt from '../components/AccordionTxt.jsx';
 import './Home.css'
 
 const Home = () => {
@@ -42,6 +43,7 @@ const Home = () => {
         <ListToggle/>
         <Alerts/>
         <StateSelection/>
+        <AccordionTxt/>
 
         </>
     )

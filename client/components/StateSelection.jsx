@@ -140,7 +140,7 @@ ConfirmationDialogRaw.propTypes = {
 
 export default function StateSelection() {
   const [open, setOpen] = React.useState(false);
-  const [value, setValue] = React.useState('Dione');
+  const [value, setValue] = React.useState('Choose your State');
 
   const handleClickListItem = () => {
     setOpen(true);
@@ -157,9 +157,7 @@ export default function StateSelection() {
   return (
     <Box sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
       <List component="div" role="group">
-        <ListItemButton divider disabled>
-          <ListItemText primary="Choose your State" />
-        </ListItemButton>
+     
         <ListItemButton
           divider
           aria-haspopup="true"
@@ -170,7 +168,7 @@ export default function StateSelection() {
           <ListItemText primary="State" secondary={value} />
         </ListItemButton>
         <ListItemButton divider disabled>
-         
+
         </ListItemButton>
         <ConfirmationDialogRaw
           id="ringtone-menu"

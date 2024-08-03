@@ -53,7 +53,10 @@ function AllProperties() {
     setName(''); // Clear the input fields after adding
     setAddress('');
     closeModal();
+  }
 
+  const handleDelete = async ()=> {
+    await dispatch(deleteProperty(property.id))
   }
 
   useEffect(() => {
@@ -67,19 +70,8 @@ function AllProperties() {
     fetchData();
   }, [dispatch]);
 
-
-
-
-
-
-
-
   return (
     <>
-
-
-
-
       <div className='buttons'>
         <div>
         <button onClick={openModal}>ADD</button>

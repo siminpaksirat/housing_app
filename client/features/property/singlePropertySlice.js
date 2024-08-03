@@ -11,6 +11,16 @@ export const fetchSingleProperty = createAsyncThunk('properties/:id', async () =
     }
   });
 
+  export const editSingleProperty = createAsyncThunk('properties/:id', async () => {
+    try {
+      const { data } = await axios.put('http://localhost:3000/api/properties/:id');
+      return data;
+    } catch (err) {
+      console.error('Failed to fetch properties:', err);
+      throw err;
+    }
+  });
+
 
 
 
@@ -26,6 +36,10 @@ export const fetchSingleProperty = createAsyncThunk('properties/:id', async () =
       builder
 
         .addCase(fetchSingleProperty.fulfilled, (state, action) => {
+          state.status = 'succeeded';
+          state.singleProperty = action.payload;
+        })
+        .addCase(editSingleProperty.fulfilled, (state, action) => {
           state.status = 'succeeded';
           state.singleProperty = action.payload;
         })

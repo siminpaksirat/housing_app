@@ -18,6 +18,8 @@ const PropertyCard = ({ property }) => {
   const dispatch = useDispatch();
   const properties = useSelector(selectAllProperties);
 
+  const [currentProperty, setCurrentProperty] = useState({})
+
   useEffect(() => {
     dispatch(fetchAllProperties());
 }, [dispatch]);
@@ -25,7 +27,9 @@ const PropertyCard = ({ property }) => {
 
   return (
     <>
-    <div className='property-card' key={property.id} property={property}>
+    <div className='property-card' key={property.id} onClick={()=> {
+      setCurrentProperty(property)
+    }}>
     {property.name}
     {property.address}
 

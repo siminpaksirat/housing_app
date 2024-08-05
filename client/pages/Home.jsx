@@ -13,6 +13,7 @@ import ListToggle from '../components/toggles/ListToggle.jsx';
 import Alerts from '../components/alerts/Alerts.jsx';
 import StateSelection from '../components/StateSelection.jsx';
 import AccordionTxt from '../components/AccordionTxt.jsx';
+import EmailModal from '../components/EmailModal.jsx';
 import './Home.css'
 
 const Home = () => {
@@ -20,9 +21,7 @@ const Home = () => {
     return (
         <>
         <div>
-            <button>
-                sign in
-            </button>
+    <EmailModal/>
         </div>
 
         <div className="home-wraper">
@@ -44,7 +43,6 @@ const Home = () => {
         <Alerts/>
         <StateSelection/>
         <AccordionTxt/>
-
         </>
     )
 

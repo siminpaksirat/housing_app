@@ -1,11 +1,8 @@
 import { Router } from 'express';
 import User from '../../models/userModel';
-
 const router = Router();
 
-
-/////////////// FETCH ALL //////////////
-router.get('/', async (req, res, next) => {
+router.get('/auth', async (req, res, next) => {
   try {
     const users = await User.findAll({
       attributes: [

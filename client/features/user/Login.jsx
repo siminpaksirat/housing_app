@@ -1,39 +1,33 @@
-import { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-
-
-
-function Login (){
-
-    const dispatch = useDispatch();
-
-
-    const [isModalOpen, setIsModalOpen] = useState(false);
-    ////////////////////////
-    const openModal = () => {
-      setIsModalOpen(true);
-    };
-    const closeModal = () => {
-      setIsModalOpen(false);
-    };
-    ////////////////////////
-
-
-   return (
+import React from 'react';
+export default function Login() {
+  return (
     <>
-<div>
-  <h1>this is login</h1>
-</div>
+      <div className="form-floating mb-2">
+        <input
+          type="email"
+          className="form-control"
+          id="floatingInput"
+          name="email"
+          placeholder="name@example.com"
+        />
+        <label htmlFor="floatingInput">Email address</label>
+      </div>
+      <div className="form-floating mb-2">
+        <input
+          type="password"
+          className="form-control"
+          id="floatingPassword"
+          name="password"
+          placeholder="Password"
+        />
+        <label htmlFor="floatingPassword">Password</label>
+      </div>
 
-
-
+      <div className="checkbox mb-3">
+        <label>
+          <input type="checkbox" value="remember-me" /> Remember me
+        </label>
+      </div>
     </>
-   )
-
-
-
+  );
 }
-
-
-
-export default Login;

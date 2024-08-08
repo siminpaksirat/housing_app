@@ -8,7 +8,7 @@ dotenv.config();
 
 
 import propertyRoutes from './server/api/routes/propertyRoutes.js';
-import authRoute from './server/api/routes/authRoute.js'
+// import authRoute from './server/api/routes/authRoute.js'
 
 
 
@@ -25,7 +25,7 @@ app.use(bodyParser.json());
 
 // Routes /////////////////////////////////////////////////////////////
 app.use('/api', propertyRoutes);
-app.use('/auth',  authRoute)
+// app.use('/auth',  authRoute)
 
 // Routes /////////////////////////////////////////////////////////////
 

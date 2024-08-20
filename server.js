@@ -2,13 +2,16 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 import express from 'express';
 import bodyParser from 'body-parser';
+import morgan from 'morgan';
 import path, { dirname } from 'path';
 import { fileURLToPath } from 'url';
 dotenv.config();
 
 
 import propertyRoutes from './server/api/routes/propertyRoutes.js';
-// import authRoute from './server/api/routes/authRoute.js'
+import usersRoutes from './server/api/routes/usersRoutes.js';
+
+
 
 
 
@@ -21,11 +24,12 @@ const app = express()
 app.use(express.json())
 app.use(cors());
 app.use(bodyParser.json());
+app.use(morgan('combined'));
 
 
 // Routes /////////////////////////////////////////////////////////////
 app.use('/api', propertyRoutes);
-// app.use('/auth',  authRoute)
+app.use('/api', usersRoutes);
 
 // Routes /////////////////////////////////////////////////////////////
 
@@ -36,7 +40,7 @@ const __dirname = dirname(__filename);
 
 // Serve the index.html file for the root URL ('/')
 app.get('/', (req, res) => {
-    console.log('THIS IS app get, ', __dirname);
+    console.log('THIS IS ap1TEWSTYREDp get, ', __dirname);
     res.sendFile(path.join(__dirname, 'index.html'));
 });
 

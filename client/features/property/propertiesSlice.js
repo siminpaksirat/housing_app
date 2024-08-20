@@ -46,7 +46,7 @@ export const deleteProperty = createAsyncThunk('properties/deleteProperty', asyn
 const propertiesSlice = createSlice({
   name: 'properties',
   initialState: {
-    properties: [],
+    property: [],
     status: 'idle',
     error: null
   },
@@ -55,7 +55,7 @@ const propertiesSlice = createSlice({
     builder
       .addCase(fetchAllProperties.fulfilled, (state, action) => {
         state.status = 'succeeded';
-        state.properties = action.payload;
+        state.property = action.payload;
       })
       .addCase(addProperty.fulfilled, (state, action) => {
         state.properties.push(action.payload);
@@ -74,5 +74,5 @@ const propertiesSlice = createSlice({
 
 
 
-export const selectAllProperties = (state) => state.properties.properties;
+export const selectAllProperties = (state) => state.properties.property;
 export default propertiesSlice.reducer;

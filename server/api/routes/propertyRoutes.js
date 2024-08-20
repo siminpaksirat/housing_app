@@ -1,6 +1,7 @@
 import { Router } from 'express';
 import Property from '../../models/propertyModel.js';
 
+
 const router = Router();
 
 
@@ -89,8 +90,5 @@ router.delete('/properties/:propertyId', async (req, res, next) => {
     next(error);
   }
 });
-
-
-
 
 export default router;

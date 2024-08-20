@@ -9,6 +9,8 @@ import Login from './features/user/Login.jsx';
 import Signup from './features/user/Signup.jsx';
 import Profile from './pages/Profile.jsx';
 
+import AllUsers from './pages/AllUsers.jsx';
+
 import NavBar from './components/Navbar.jsx';
 
 const AppRoutes = () => {
@@ -17,6 +19,7 @@ const AppRoutes = () => {
 <NavBar/>
 
         <Routes>
+        <Route path='/users' element={<AllUsers/>} />
         <Route path='/signup' element={<Signup/>} />
         <Route path='/login' element={<Login/>} />
         <Route path='/profile' element={<Profile/>} />

@@ -17,7 +17,7 @@ import AdbIcon from '@mui/icons-material/Adb';
 import SearchIcon from '@mui/icons-material/Search';
 import { Link } from 'react-router-dom';
 
-const pages = ['PROPERTIES', 'INSPIRATION', 'CONTRACTORS'];
+const pages = ['PROPERTIES', 'INSPIRATION','USERS', 'CONTRACTORS'];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
 const Search = styled('div')(({ theme }) => ({

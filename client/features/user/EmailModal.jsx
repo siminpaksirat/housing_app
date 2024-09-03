@@ -16,6 +16,17 @@ import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
 import ListSubheader from '@mui/material/ListSubheader';
 
+
+import { Link, useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { useState, useEffect } from 'react';
+
+
+
+
+import {fetchAllUsers, selectAllUsers, addUser} from './allUsersSlice.js'
+import { AxiosError } from 'axios';
+
 /////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////
 function CustomTabPanel(props) {
@@ -50,8 +61,24 @@ function CustomTabPanel(props) {
 /////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////
 export default function SignIn() {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  // const signIn = useSignIn()
+
+
   const [open, setOpen] = React.useState(false);
   const [value, setValue] = React.useState(0);
+  const [error, setError] = useState("")
+
+
+
+  const users = useSelector(selectAllUsers)
+  // console.log(users)
+
+  const[currentUser, setCurrentUser] = useState({})
+  const[email, setEmail] = useState('')
+  const[password, setPassword] = useState('')
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -66,12 +93,69 @@ export default function SignIn() {
   };
 
 
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        dispatch(fetchAllUsers());
+        // dispatch(fetchUser())
+      } catch (error) {
+        console.error(error);
+      }
+    }
+    fetchData();
+  }, [dispatch]);
+
+
+  const handleSignin = async (evt)=> {
+    evt.preventDefault();
+    await dispatch(fetchUser({email, password}))
+    setEmail('')
+    setPassword('')
+    navigate('/users/:id')
+  }
+
+  const handleSignup = async (event)=> {
+    event.preventDefault();
+    await dispatch(addUser({email, password}))
+    setEmail('')
+    setPassword('')
+    navigate('/profile')
+  }
+
+
+  // const onSubmit = async (evt) => {
+  //   evt.preventDefault();
+  //   setError("")
+
+  //   try {
+  //     const response = await axios.post (
+  //       "http://localhost:3000/api/login"
+  //     )
+
+  //     signIn({
+  //       token: response.data.token,
+  //       expiresIn: 3600,
+  //       tokenType: "Bearer",
+  //       authState: { email: email}
+  //     })
+  //   } catch (err){
+  //     if( err && err instanceof AxiosError)
+  //       setError(err.response?.data.message)
+  //     else if( err && err instanceof err) setError(err.message)
+  //       console.log("Erros:", err)
+  //   }
+
+  //   setEmail('')
+  //   setPassword('')
+  // }
+
+
 
 
   return (
     <React.Fragment>
       <Button variant="outlined" onClick={handleClickOpen}>
-        SIGN IN
+        Get IN
       </Button>
       <Dialog
         open={open}
@@ -100,6 +184,7 @@ export default function SignIn() {
           <CustomTabPanel value={value} index={0}>
             <DialogContent>
               <TextField
+              onChange={(event)=> setEmail(event.target.value)}
                 autoFocus
                 required
                 margin="dense"
@@ -111,6 +196,7 @@ export default function SignIn() {
                 variant="standard"
               />
               <TextField
+              onChange={(event)=> setPassword(event.target.value)}
                 required
                 margin="dense"
                 id="password"
@@ -122,7 +208,7 @@ export default function SignIn() {
               />
             </DialogContent>
             <DialogActions>
-              <Button type="submit">Sign in</Button>
+              <Button onClick={handleSignin} type="submit">Sign in</Button>
               <Button>Forgot Password?</Button>
             </DialogActions>
           </CustomTabPanel>

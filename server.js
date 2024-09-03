@@ -10,6 +10,7 @@ dotenv.config();
 
 import propertyRoutes from './server/api/routes/propertyRoutes.js';
 import usersRoutes from './server/api/routes/usersRoutes.js';
+// import authRoutes from './server/api/routes/authRoutes.js'
 
 
 
@@ -30,6 +31,7 @@ app.use(morgan('combined'));
 // Routes /////////////////////////////////////////////////////////////
 app.use('/api', propertyRoutes);
 app.use('/api', usersRoutes);
+// app.use('/api', authRoutes);
 
 // Routes /////////////////////////////////////////////////////////////
 

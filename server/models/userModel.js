@@ -1,4 +1,6 @@
 import { Sequelize, DataTypes } from "sequelize";
+import bcrypt from 'bcryptjs';
+import jwt from 'jsonwebtoken';
 import dotenv from 'dotenv';
 dotenv.config();
 
@@ -7,6 +9,9 @@ const sequelize = new Sequelize(process.env.DB_NAME, process.env.DB_USER, proces
     dialect: 'postgres',
     logging: false,
   });
+
+
+  const SALT_ROUNDS = 5;
 
 
 const User = sequelize.define('user', {
@@ -18,11 +23,11 @@ const User = sequelize.define('user', {
     },
     firstname: {
         type: Sequelize.STRING,
-        allowNull: false,
+        allowNull: true,
       },
       lastname: {
         type: Sequelize.STRING,
-        allowNull: false,
+        allowNull: true,
       },
       email: {
         type: Sequelize.STRING,
@@ -36,10 +41,14 @@ const User = sequelize.define('user', {
         type: Sequelize.STRING,
         allowNull: false,
       },
+
 }, {
   tableName: 'users',
   timestamps: false,
 });
+
+sequelize.sync({ alter: true });
+
 
 export default User;
 

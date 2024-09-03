@@ -11,7 +11,7 @@ import UserCard from '../features/user/UserCard.jsx';
 function AllUsers() {
   const dispatch = useDispatch();
   const users = useSelector(selectAllUsers);
-  console.log('this is users', users)
+//   console.log('this is users', users)
 
 
 
@@ -30,18 +30,17 @@ function AllUsers() {
   return (
     <>
 
-      <div className='users-wrapper'>
-      <h1>Users</h1>
-
-<div>
-
-    {users && users.map((user)=> {
-        <UserCard key={user.id} user={user}/>
-    })}
-
-
-
-</div>
+<div className="users-wrapper">
+        <h1>Users</h1>
+        <div>
+          {users && users.length > 0 ? (
+            users.map((user) => (
+              <UserCard key={user.id} user={user} />
+            ))
+          ) : (
+            <p>No users found.</p>
+          )}
+        </div>
       </div>
 
       </>
@@ -54,3 +53,8 @@ function AllUsers() {
 
 
 export default AllUsers;
+
+
+// {users && users.map((user)=> {
+//     <UserCard key={user.id} user={user}/>
+// })}

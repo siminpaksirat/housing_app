@@ -4,6 +4,8 @@ import User from '../../models/userModel.js';
 
 const router = Router();
 
+
+
 /////////////// FETCH ALL //////////////
 router.get('/users', async (req, res, next) => {
   try {
@@ -25,42 +27,34 @@ router.get('/users', async (req, res, next) => {
 
 
 /////////////// FETCH SINGLE //////////////
+router.get('/users/userId', async (req, res, next) => {
 
-// router.get('/users/:userId', async (req, res, next) => {
-//   const userId = req.params.userId;
-//   try {
-//     const user = await User.findOne({
-//       where: { id: userId },
-//     });
-//     if (user) {
-//       res.json(user);
-//     } else {
-//       res.status(404).send({ message: 'User not found' });
-//     }
-//   } catch (error) {
-//     next(error);
-//   }
-// });
+  const userId = req.params.user.id
+  try {
+    const user = await User.findByPk(userId, {
+    });
+    res.json({ user });
+  } catch (err) {
+    next(err);
+  }
+});
 
-// router.get('/users/:id', async (req, res, next) => {
-//   try {
-//     const user = await User.findByPk(req.params.id, {
-//     });
-//     res.json({ user });
-//   } catch (err) {
-//     next(err);
-//   }
-// });
+/////////////// POST //////////////
+router.post('/users', async (req, res, next) => {
+  try {
+    const newUser = await User.create({
+      email: req.body.email,
+      password: req.body.password,
+    })
+    res.status(201).json(newUser);
+  } catch (err) {
+    next(err);
+  }
+});
 
-// router.get('/users/:userId', async (req, res, next) => {
-//   const userId = req.params.userId;
-//   try {
-//     const user = await User.findByPk(userId);
-//     res.send(user);
-//   } catch (error) {
-//     next(error);
-//   }
-// });
+
+/////////////// ADD USER //////////////
+
 
 // router.delete('/users/:id', async (req, res, next) => {
 //   const userId = req.params.userId;

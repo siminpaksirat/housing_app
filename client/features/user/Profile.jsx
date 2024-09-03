@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { updatePassword } from './userPageSlice';
 import { Navigate } from 'react-router-dom';
 
-const EditProfile = () => {
+
+
+const Profile = () => {
   const dispatch = useDispatch();
 
-  const { firstName, lastName, email, userType } = useSelector(
+  const { firstname, lastname, email, password } = useSelector(
     (state) => state.auth.me
   );
   const [form, setForm] = useState({
@@ -48,6 +49,18 @@ const EditProfile = () => {
           <strong>Email:</strong> {email}
         </p>
       </div>
+      <div>
+      <Button
+  component="label"
+  role={undefined}
+  variant="contained"
+  tabIndex={-1}
+  startIcon={<CloudUploadIcon />}
+>
+  Upload file
+  <VisuallyHiddenInput type="file" />
+</Button>
+      </div>
       <form onSubmit={handleSubmit}>
         <div className="mb-3">
           <label htmlFor="currentPassword" className="form-label">
@@ -83,4 +96,4 @@ const EditProfile = () => {
   );
 };
 
-export default EditProfile;
+export default Profile;

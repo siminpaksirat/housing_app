@@ -25,6 +25,8 @@ import { useState, useEffect } from 'react';
 
 
 import {fetchAllUsers, selectAllUsers, addUser} from './allUsersSlice.js'
+import { fetchMe, authenticate } from './authSlice.jsx'
+import UserCard from './UserCard.jsx'
 import { AxiosError } from 'axios';
 
 /////////////////////////////////////////////////////////////////////////////////
@@ -97,7 +99,6 @@ export default function SignIn() {
     async function fetchData() {
       try {
         dispatch(fetchAllUsers());
-        // dispatch(fetchUser())
       } catch (error) {
         console.error(error);
       }
@@ -108,10 +109,16 @@ export default function SignIn() {
 
   const handleSignin = async (evt)=> {
     evt.preventDefault();
-    await dispatch(fetchUser({email, password}))
+
+    users && users.map((user)=> {
+      <UserCard key={user.id} user={user}/>
+      {navigate(`profile/${user.id}`)}
+    })
+
+    // await dispatch(fetchUser({email, password}))
     setEmail('')
     setPassword('')
-    navigate('/users/:id')
+
   }
 
   const handleSignup = async (event)=> {

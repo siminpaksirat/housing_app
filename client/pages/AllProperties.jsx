@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchAllProperties, selectAllProperties, addProperty, deleteProperty } from '../features/property/propertiesSlice.js';
-import PropertyCard from '../components/PropertyCard.jsx';
+import PropertyCard from '../features/property/PropertyCard.jsx';
 
 import './AllProperties.css'
 
@@ -55,9 +55,9 @@ function AllProperties() {
     closeModal();
   }
 
-  const handleDelete = async ()=> {
-    await dispatch(deleteProperty(property.id))
-  }
+  // const handleDelete = async ()=> {
+  //   await dispatch(deleteProperty(property.id))
+  // }
 
   useEffect(() => {
     async function fetchData() {
@@ -88,7 +88,7 @@ function AllProperties() {
       <div className='properties-wrapper'>
       <h1>Properties</h1>
 
-<div>
+<div className='property-card'>
 {properties && properties.map((property) => (
           <PropertyCard key={property.id} property={property} />
         ))}

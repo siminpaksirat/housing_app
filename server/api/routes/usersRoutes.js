@@ -27,11 +27,9 @@ router.get('/users', async (req, res, next) => {
 
 
 /////////////// FETCH SINGLE //////////////
-router.get('/users/userId', async (req, res, next) => {
-
-  const userId = req.params.user.id
+router.get('/users/:id', async (req, res, next) => {
   try {
-    const user = await User.findByPk(userId, {
+    const user = await User.findByPk(req.params.id, {
     });
     res.json({ user });
   } catch (err) {

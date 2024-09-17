@@ -1,99 +1,43 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Navigate } from 'react-router-dom';
 
+import UserCard from './UserCard.jsx'
 
 
-const Profile = () => {
+import { fetchUser, selectSingleUser, selectAllUsers } from './allUsersSlice';
+
+
+const Profile = ({ user }) => {
   const dispatch = useDispatch();
+  const users = useSelector(selectAllUsers)
+  const username = useSelector(selectSingleUser)
+  console.log(username)
 
-  const { firstname, lastname, email, password } = useSelector(
-    (state) => state.auth.me
-  );
-  const [form, setForm] = useState({
-    currentPassword: '',
-    newPassword: '',
-  });
 
-  const handleChange = (event) => {
-    setForm({
-      ...form,
-      [event.target.name]: event.target.value,
-    });
-  };
+  const [currentUser, setCurrentUser] = useState({})
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-    try {
-      dispatch(updatePassword(form));
-      <Navigate to="/profile" />;
-    } catch (error) {
-      console.log(error);
+  useEffect(()=> {
+
+    async function fetchData() {
+      try {
+        dispatch(fetchUser());
+      } catch (error) {
+        console.error(error);
+      }
     }
-  };
+    fetchData();
+  }, [dispatch])
+
+
 
   return (
-    <div className="container my-5">
-      <h2>Edit Profile</h2>
-      {userType === 'admin' && (
-        <button className="btn btn-primary mb-3">Admin Privileges</button>
-      )}
-      <div>
-        <p>
-          <strong>First Name:</strong> {firstName}
-        </p>
-        <p>
-          <strong>Last Name:</strong> {lastName}
-        </p>
-        <p>
-          <strong>Email:</strong> {email}
-        </p>
-      </div>
-      <div>
-      <Button
-  component="label"
-  role={undefined}
-  variant="contained"
-  tabIndex={-1}
-  startIcon={<CloudUploadIcon />}
->
-  Upload file
-  <VisuallyHiddenInput type="file" />
-</Button>
-      </div>
-      <form onSubmit={handleSubmit}>
-        <div className="mb-3">
-          <label htmlFor="currentPassword" className="form-label">
-            Current Password
-          </label>
-          <input
-            type="password"
-            className="form-control"
-            id="currentPassword"
-            name="currentPassword"
-            value={form.currentPassword}
-            onChange={handleChange}
-          />
-        </div>
-        <div className="mb-3">
-          <label htmlFor="newPassword" className="form-label">
-            New Password
-          </label>
-          <input
-            type="password"
-            className="form-control"
-            id="newPassword"
-            name="newPassword"
-            value={form.newPassword}
-            onChange={handleChange}
-          />
-        </div>
-        <button type="submit" className="btn btn-primary">
-          Save Changes
-        </button>
-      </form>
-    </div>
-  );
+    <>
+    <h1>This is your profile</h1>
+
+    </>
+  )
+
 };
 
 export default Profile;

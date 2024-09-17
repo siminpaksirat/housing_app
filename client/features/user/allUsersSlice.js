@@ -17,16 +17,16 @@ export const fetchAllUsers = createAsyncThunk('users/fetchAll', async () => {
 });
 
 ///////////////////////////////// FETCH SINGLE USERS /////////////////////////////////
-// export const fetchUser = createAsyncThunk('users/userId', async (userId) => {
-//   try {
-//     const { data } = await axios.get(`http://localhost:3000/api/users/${userId}`);
-//     return data;
-//   } catch (err) {
-//     console.error('Failed to fetch user:', err);
-//     // debugger;
-//     throw err;
-//   }
-// });
+export const fetchUser = createAsyncThunk('users/userId', async (userId) => {
+  try {
+    const { data } = await axios.get(`http://localhost:3000/api/users/${userId}`);
+    return data;
+  } catch (err) {
+    console.error('Failed to fetch user:', err);
+    // debugger;
+    throw err;
+  }
+});
 
 ///////////////////////////////// ADD USER /////////////////////////////////
 export const addUser = createAsyncThunk('users/addUser', async ({ email, password}) => {
@@ -62,10 +62,10 @@ const allUsersSlice = createSlice({
       state.user = action.payload;
       state.status = 'succeeded';
     })
-    // .addCase(fetchUser.fulfilled, (state, action) => {
-    //   state.user = action.payload;
-    //   state.status = 'succeeded';
-    // })
+    .addCase(fetchUser.fulfilled, (state, action) => {
+      state.user = action.payload;
+      state.status = 'succeeded';
+    })
     .addCase(addUser.fulfilled, (state, action) => {
       state.users.push(action.payload);
     })
@@ -73,4 +73,5 @@ const allUsersSlice = createSlice({
 });
 
 export const selectAllUsers = (state) => state.users.user;
+export const selectSingleUser = (state) => state.users.user;
 export default allUsersSlice.reducer;

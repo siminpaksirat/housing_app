@@ -1,9 +1,11 @@
 import { Route, Routes } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
 
 
 
 import Home from './pages/Home.jsx';
 import AllProperties from './pages/AllProperties.jsx';
+
 import About from './pages/About.jsx';
 
 import Profile from './features/user/Profile.jsx';
@@ -19,10 +21,11 @@ const AppRoutes = () => {
 
         <Routes>
         <Route path='/users' element={<AllUsers/>} />
-    
-        <Route path='/profile' element={<Profile/>} />
+
+        <Route path='/profile/:id' element={<Profile/>} />
         <Route path='/' element={<Home/>} />
         <Route path='/properties' element={<AllProperties/>} />
+
         <Route path='/about' element={<About/>} />
         </Routes>
 

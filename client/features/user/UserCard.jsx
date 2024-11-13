@@ -24,12 +24,10 @@ return (
      <div className='user-card' key={user.id} onClick={()=> {
       setCurrentUser(user)
     }}>
-    {user.firstname}
-    {user.lastname}
+    {/* {user.firstname}
+    {user.lastname} */}
     {user.email}
     {user.password}
-
-
     </div>
     </>
 )

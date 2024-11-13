@@ -5,7 +5,8 @@ import { Navigate } from 'react-router-dom';
 import UserCard from './UserCard.jsx'
 
 
-import { fetchUser, selectSingleUser, selectAllUsers } from './allUsersSlice';
+import {selectAllUsers } from './allUsersSlice';
+import { fetchSingleUser, selectSingleUser } from './SingleUserSlice.js';
 
 
 const Profile = ({ user }) => {
@@ -21,7 +22,7 @@ const Profile = ({ user }) => {
 
     async function fetchData() {
       try {
-        dispatch(fetchUser());
+        dispatch(fetchSingleUser());
       } catch (error) {
         console.error(error);
       }
@@ -34,6 +35,7 @@ const Profile = ({ user }) => {
   return (
     <>
     <h1>This is your profile</h1>
+
 
     </>
   )

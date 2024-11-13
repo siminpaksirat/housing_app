@@ -24,7 +24,7 @@ import { useState, useEffect } from 'react';
 
 
 
-import {fetchAllUsers, selectAllUsers, addUser} from './allUsersSlice.js'
+import {fetchAllUsers,selectAllUsers, addUser} from './allUsersSlice.js'
 import { fetchMe, authenticate } from './authSlice.jsx'
 import UserCard from './UserCard.jsx'
 import { AxiosError } from 'axios';
@@ -99,6 +99,7 @@ export default function SignIn() {
     async function fetchData() {
       try {
         dispatch(fetchAllUsers());
+
       } catch (error) {
         console.error(error);
       }
@@ -110,9 +111,13 @@ export default function SignIn() {
   const handleSignin = async (evt)=> {
     evt.preventDefault();
 
+    // const us = evt.target.value;
+    // console.log(us)
+
     users && users.map((user)=> {
       <UserCard key={user.id} user={user}/>
-      {navigate(`profile/${user.id}`)}
+      {console.log(user)}
+      // {navigate(`profile/${user.id}`)}
     })
 
     // await dispatch(fetchUser({email, password}))
@@ -126,7 +131,7 @@ export default function SignIn() {
     await dispatch(addUser({email, password}))
     setEmail('')
     setPassword('')
-    navigate('/profile')
+    // navigate('/profile')
   }
 
 
@@ -175,6 +180,8 @@ export default function SignIn() {
             const formJson = Object.fromEntries(formData.entries());
             const email = formJson.email;
             const password = formJson.password;
+            // dispatch(addUser(email, password));
+            // dispatch(fetchAllUsers())
             console.log('Email:', email);
             console.log('Password:', password);
             handleClose();
@@ -223,6 +230,7 @@ export default function SignIn() {
             {/* You can add content for "New Account" tab here */}
             <DialogContent>
               <TextField
+              onChange={(event)=> setEmail(event.target.value)}
                 autoFocus
                 required
                 margin="dense"
@@ -234,6 +242,7 @@ export default function SignIn() {
                 variant="standard"
               />
               <TextField
+              onChange={(event)=> setPassword(event.target.value)}
                 required
                 margin="dense"
                 id="new-password"
@@ -252,7 +261,7 @@ export default function SignIn() {
 
             </DialogContent>
             <DialogActions>
-              <Button type="submit">Sign up</Button>
+              <Button onClick={handleSignup} type="submit">Sign up</Button>
             </DialogActions>
           </CustomTabPanel>
         </Box>

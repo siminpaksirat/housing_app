@@ -12,8 +12,6 @@ router.get('/users', async (req, res, next) => {
     const users = await User.findAll({
       attributes: [
         'id',
-        'firstname',
-        'lastname',
         'email',
         'password',
       ],
@@ -27,13 +25,19 @@ router.get('/users', async (req, res, next) => {
 
 
 /////////////// FETCH SINGLE //////////////
-router.get('/users/:id', async (req, res, next) => {
+router.get('/users/:userId', async (req, res, next) => {
+  const userId = req.params.userId;
   try {
-    const user = await User.findByPk(req.params.id, {
+    const user = await User.findOne({
+      where: { id: userId },
     });
-    res.json({ user });
-  } catch (err) {
-    next(err);
+    if (user) {
+      res.json(user);
+    } else {
+      res.status(404).send({ message: 'User not found' });
+    }
+  } catch (error) {
+    next(error);
   }
 });
 

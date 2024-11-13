@@ -58,13 +58,13 @@ const propertiesSlice = createSlice({
         state.property = action.payload;
       })
       .addCase(addProperty.fulfilled, (state, action) => {
-        state.properties.push(action.payload);
+        state.property.push(action.payload);
         // const newProperty = action.payload;
         // return [...state.properties, newProperty]
       })
       .addCase(deleteProperty.fulfilled, (state, action) => {
         const propertyId = action.payload;
-        return state.properties.filter((property) => property.id === propertyId)
+        return state.property.filter((property) => property.id === propertyId)
       })
   }
 });

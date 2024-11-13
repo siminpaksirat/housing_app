@@ -13,6 +13,10 @@ function AllUsers() {
   const users = useSelector(selectAllUsers);
 //   console.log('this is users', users)
 
+const[currentUser, setCurrentUser] = useState({})
+const[email, setEmail]= useState('')
+const[password, setPassword]=useState('')
+
 
 
   useEffect(() => {
